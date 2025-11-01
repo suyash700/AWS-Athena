@@ -26,7 +26,9 @@ s3://my-pec-bucket-1/orders/
         ├── orders_pending/
         ├── orders_cancelled/
         └── orders_shipped/
-
+        
+---------
+---------
 
 ### 1.2 Query Results Bucket
 
@@ -43,13 +45,17 @@ Go to Athena → Settings → Manage → Query result location and set this path
 
 <img width="1919" height="918" alt="Screenshot 2025-10-31 221759" src="https://github.com/user-attachments/assets/04a63f98-fa37-42cf-80a8-819fc9abf4c3" />
 
-
+---------
+---------
 
 ## 🧱 Step 2: Create Athena Database
 
 Run this query in the Athena Query Editor:
 
 <img width="1919" height="918" alt="Screenshot 2025-10-31 221759" src="https://github.com/user-attachments/assets/c7fb17f7-6320-4cfb-96b9-53692e0a94ad" />
+
+---------
+---------
 
 ## 📋 Step 3: Create External Table
 
@@ -64,6 +70,9 @@ Load Partitions
 
 <img width="1918" height="923" alt="Screenshot 2025-10-31 225636" src="https://github.com/user-attachments/assets/071ce6fd-bf90-45e3-9c51-b705cb63f28d" />
 
+---------
+---------
+
 ## 🧮 Step 4: Basic SQL Queries
 
 -- 1. Show all data
@@ -73,6 +82,8 @@ SELECT * FROM suyashdb.orders_partitioned LIMIT 10;
 
 <img width="1916" height="918" alt="Screenshot 2025-10-31 223409" src="https://github.com/user-attachments/assets/c3b165cf-361a-4417-b667-21f40497dbd7" />
 
+---------
+---------
 
 -- 2. Count total orders
 SELECT COUNT(*) AS total_orders FROM suyashdb.orders_partitioned;
@@ -80,6 +91,9 @@ SELECT COUNT(*) AS total_orders FROM suyashdb.orders_partitioned;
 <img width="1919" height="916" alt="Screenshot 2025-10-31 223536" src="https://github.com/user-attachments/assets/fc21b344-98e4-465c-b295-a62574932abd" />
 
 <img width="1909" height="926" alt="Screenshot 2025-10-31 223543" src="https://github.com/user-attachments/assets/a5811669-6c1c-471b-bcfe-8b25bd39a297" />
+
+---------
+---------
 
 -- 3. Filter by status
 SELECT * FROM suyashdb.orders_partitioned WHERE status = 'delivered';
@@ -105,6 +119,9 @@ ORDER BY total_spent DESC;
 
 <img width="1918" height="909" alt="Screenshot 2025-10-31 231249" src="https://github.com/user-attachments/assets/50303ef7-5b61-4dc0-a9dc-4c7e7ced0696" />
 
+---------
+---------
+
 -- 2. Top 5 products by sales
 SELECT product_id, SUM(quantity) AS total_sold
 FROM suyashdb.orders_partitioned
@@ -114,6 +131,8 @@ LIMIT 5;
 
 <img width="1919" height="918" alt="Screenshot 2025-10-31 231300" src="https://github.com/user-attachments/assets/36b73de1-e67a-4a7f-9fd2-c294c67a39e6" />
 
+---------
+---------
 
 -- 3. Average order value per status
 SELECT status, AVG(total_amount) AS avg_order_value
@@ -122,12 +141,17 @@ GROUP BY status;
 
 <img width="1919" height="913" alt="Screenshot 2025-10-31 231839" src="https://github.com/user-attachments/assets/4594619a-f663-4ab3-be80-c9c098eccb54" />
 
+---------
+---------
 
 -- 4. Monthly sales trend
 SELECT substr(order_date, 1, 7) AS month, SUM(total_amount) AS total_sales
 FROM suyashdb.orders_partitioned
 GROUP BY substr(order_date, 1, 7)
 ORDER BY month;
+
+---------
+---------
 
 -- 5. Customer order count and total spent
 SELECT customer_id,
@@ -153,6 +177,9 @@ Athena DB and external table creation
 Partition repair for optimized queries
 
 Basic & advanced SQL operations on S3 data
+
+---------
+---------
 
 # Author : Suyash Dahitule
 
