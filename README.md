@@ -1,8 +1,8 @@
-# AWS-Athena
+# AWS-Athena Service
 
 # 🧠 AWS Athena Setup and SQL Query Project
 
-This project demonstrates how to use Amazon S3 + AWS Athena to query structured CSV data efficiently using both basic and advanced SQL.
+### This project demonstrates how to use Amazon S3 + AWS Athena to query structured CSV data efficiently using both basic and advanced SQL.
 
 ## 🪣 Step 1: Create S3 Buckets
 
